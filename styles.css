@@ -1,0 +1,32 @@
+.container {
+    margin: auto;
+    width: max-content;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.clear-button {
+    width: 516px;
+}
+
+.digit-operator {
+    width: 96px;
+}
+
+.display {
+    width: 100%;
+    background-color: darkgray;
+    height: 50px;
+    text-align: right;
+}
+
+.row {
+    width: 100%;
+    flex: 1;
+}
+
+.zero {
+    width: 344px;
+}
