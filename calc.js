@@ -15,9 +15,10 @@ function divide(a, b) {
 }
 
 function operate(firstNum, secondNum, operator) {
-    return operators[operator](firstNum, secondtNum);
+    return operators[operator](firstNum, secondNum);
 }
 
+const display = document.querySelector('.display');
 const operators = {
     '+': add,
     '-': subtract, 
@@ -25,83 +26,37 @@ const operators = {
     '/': divide
 }
 
-const display = document.querySelector('.display');
-let displayValue;
+let displayValue = null;
+let inputOne = null;
+let operator = null;
+let inputTwo = null;
 
-const btnOne = document.querySelector('.btn-one');
-btnOne.addEventListener('click', () => {
-    display.textContent += 1;
-    displayValue = display.textContent;
-});
-const btnTwo = document.querySelector('.btn-two');
-btnTwo.addEventListener('click', () => {
-    display.textContent += 2;
-    displayValue = display.textContent;
-});
-const btnThree = document.querySelector('.btn-three');
-btnThree.addEventListener('click', () => {
-    display.textContent += 3;
-    displayValue = display.textContent;
-});
-const btnFour = document.querySelector('.btn-four');
-btnFour.addEventListener('click', () => {
-    display.textContent += 4;
-    displayValue = display.textContent;
-});
-const btnFive = document.querySelector('.btn-five');
-btnFive.addEventListener('click', () => {
-    display.textContent += 5;
-    displayValue = display.textContent;
-});
-const btnSix = document.querySelector('.btn-six');
-btnSix.addEventListener('click', () => {
-    display.textContent += 6;
-});
-const btnSeven = document.querySelector('.btn-seven');
-btnSeven.addEventListener('click', () => {
-    display.textContent += 7;
-    displayValue = display.textContent;
-});
-const btnEight = document.querySelector('.btn-eight');
-btnEight.addEventListener('click', () => {
-    display.textContent += 8;
-    displayValue = display.textContent;
-});
-const btnNine = document.querySelector('.btn-nine');
-btnNine.addEventListener('click', () => {
-    display.textContent += 9;
-    displayValue = display.textContent;
-});
-const btnZero = document.querySelector('.btn-zero');
-btnZero.addEventListener('click', () => {
-    display.textContent += 0;
-    displayValue = display.textContent;
-});
-const btnPlus = document.querySelector('.btn-plus');
-btnPlus.addEventListener('click', () => {
-    display.textContent += '+';
-    displayValue = display.textContent;
-});
-const btnMinus = document.querySelector('.btn-minus');
-btnMinus.addEventListener('click', () => {
-    display.textContent += '-';
-    displayValue = display.textContent;
-});
-const btnMultiply = document.querySelector('.btn-multiply');
-btnMultiply.addEventListener('click', () => {
-    display.textContent += '*';
-    displayValue = display.textContent;
-});
-const btnDivide = document.querySelector('.btn-divide');
-btnDivide.addEventListener('click', () => {
-    display.textContent += '/';
-    displayValue = display.textContent;
-});
-const btnEquals = document.querySelector('.btn-equals');
+const numButtons = document.querySelectorAll('.num');
+numButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        display.textContent += button.textContent;
+    })
+})
+
+const operatorButtons = document.querySelectorAll('.digit-operator');
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        display.textContent += button.textContent;
+    })
+})
+
+const btnEquals = document.querySelector('.equals');
 btnEquals.addEventListener('click', () => {
-    display
+    operatorIndex = display.textContent.search(/[\+\-\*\/]/);
+    operator = display.textContent.charAt(operatorIndex);
+    inputs = display.textContent.split(/[\+\-\*\/]/);
+    inputOne = parseInt(inputs[0]);
+    inputTwo = parseInt(inputs[1]);
+    result = operate(inputOne, inputTwo, operator);
+    display.textContent = result;
 });
-const btnClear = document.querySelector('.btn-clear');
+
+const btnClear = document.querySelector('.clear');
 btnClear.addEventListener('click', () => {
     display.textContent = '';
 });
